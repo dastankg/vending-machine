@@ -1,26 +1,31 @@
-from rest_framework import pagination, generics
+from rest_framework import generics
 from rest_framework.response import Response
-
+from rest_framework import status
 from apps.product.models import Product
-from apps.product.serializer import ProductSerializer
-
-
-
-
-class ProductPagination(pagination.PageNumberPagination):
-    page_size = 1
+from apps.product.serializers import ProductSerializer, PurchaseSerializer
 
 
 class ProductListAPIView(generics.ListAPIView):
-    queryset = Product.objects.all()
+    queryset = Product.objects.filter()
     serializer_class = ProductSerializer
-    pagination_class = ProductPagination
 
-    def get(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-        serializer = self.get_serializer(queryset, many=True)
-        return Response({'products' : serializer.data})
+
+class PurchaseProductAPIView(generics.GenericAPIView):
+    serializer_class = PurchaseSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = PurchaseSerializer(data=request.data)
+        if serializer.is_valid():
+            result = serializer.save()
+            return Response({
+                "message": "Purchase successful",
+                "product": {
+                    "name": result['product'].name,
+                    "price": result['product'].price,
+                    "remaining_count": result['product'].count
+                },
+                "quantity": result['quantity'],
+                "remaining_money": result['remaining_money']
+            }, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
