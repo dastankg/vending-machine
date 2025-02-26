@@ -1,7 +1,7 @@
 import uuid
 
 from rest_framework import serializers
-from apps.product.models import Product
+from apps.products.models import Product
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -19,7 +19,7 @@ class PurchaseSerializer(serializers.Serializer):
         try:
             product = Product.objects.get(id=data['product_id'])
         except Product.DoesNotExist:
-            raise serializers.ValidationError({"product_id": "The specified product does not exist."})
+            raise serializers.ValidationError({"product_id": "The specified products does not exist."})
         if product.count < data['quantity']:
             raise serializers.ValidationError({"quantity": "Not enough items in stock."})
 
@@ -29,16 +29,16 @@ class PurchaseSerializer(serializers.Serializer):
                 "money": "Insufficient funds. Total price is {}".format(total_price)
             })
 
-        data['product'] = product
+        data['products'] = product
         data['total_price'] = total_price
         return data
 
     def create(self, validated_data):
-        product = validated_data['product']
+        product = validated_data['products']
         product.count -= validated_data['quantity']
         product.save()
         return {
-            'product': product,
+            'products': product,
             'quantity': validated_data['quantity'],
             'remaining_money': validated_data['money'] - validated_data['total_price']
         }

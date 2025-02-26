@@ -1,8 +1,8 @@
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
-from apps.product.models import Product
-from apps.product.serializers import ProductSerializer, PurchaseSerializer
+from apps.products.models import Product
+from apps.products.serializers import ProductSerializer, PurchaseSerializer
 
 
 class ProductListAPIView(generics.ListAPIView):
@@ -19,10 +19,10 @@ class PurchaseProductAPIView(generics.GenericAPIView):
             result = serializer.save()
             return Response({
                 "message": "Purchase successful",
-                "product": {
-                    "name": result['product'].name,
-                    "price": result['product'].price,
-                    "remaining_count": result['product'].count
+                "products": {
+                    "name": result['products'].name,
+                    "price": result['products'].price,
+                    "remaining_count": result['products'].count
                 },
                 "quantity": result['quantity'],
                 "remaining_money": result['remaining_money']

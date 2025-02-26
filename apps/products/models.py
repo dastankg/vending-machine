@@ -18,3 +18,5 @@ class Product(models.Model):
         indexes = (
             HashIndex(fields=('id',), name='uuid_hash_index'),
         )
+        verbose_name = 'Product'
+        verbose_name_plural = 'Products'

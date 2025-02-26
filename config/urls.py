@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from apps.product.views import ProductListAPIView, PurchaseProductAPIView
+from apps.products.views import ProductListAPIView, PurchaseProductAPIView
 
 from django.urls import re_path
 from rest_framework import permissions
@@ -22,8 +22,8 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/products", ProductListAPIView.as_view(), name="product-list"),
-    path('api/purchase/', PurchaseProductAPIView.as_view(), name='purchase-product'),
+    path("api/products", ProductListAPIView.as_view(), name="products-list"),
+    path('api/purchase/', PurchaseProductAPIView.as_view(), name='purchase-products'),
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
