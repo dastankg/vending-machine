@@ -1,6 +1,6 @@
 services:
  db:
-   image: postgres:17
+   image: postgres:16
    environment:
      POSTGRES_DB: ${DB_NAME}
      POSTGRES_USER: ${DB_USER}
@@ -26,7 +26,7 @@ services:
      DATABASE_NAME: ${DB_NAME}
      DATABASE_USERNAME: ${DB_USER}
      DATABASE_PASSWORD: ${DB_PASSWORD}
-     DATABASE_HOST: ${DB_DOCKER_HOST}
+     DATABASE_HOST: ${DB_HOST}
      DATABASE_PORT: ${DB_PORT}
    env_file:
      - .env
