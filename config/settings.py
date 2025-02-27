@@ -19,8 +19,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    # 3-rd party libraries
     "drf_yasg",
     "rest_framework",
+
+    # apps
     "apps.products"
 ]
 
@@ -80,9 +84,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = 'ru-RU'
 
-TIME_ZONE = "UTC"
+TIME_ZONE = 'Asia/Bishkek'
 
 USE_I18N = True
 
