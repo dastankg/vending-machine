@@ -10,7 +10,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = os.getenv("DEBUG")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -56,7 +56,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': os.getenv('DB_ENGINE'),
         'NAME': os.getenv('DB_NAME'),
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
@@ -91,3 +91,7 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+FIXTURE_DIRS = [
+    os.path.join(BASE_DIR, 'fixtures'),
+]

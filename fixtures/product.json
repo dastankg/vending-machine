@@ -1,0 +1,47 @@
+[
+  {
+    "model": "products.product",
+    "pk": "c0a8b3f4-6a2d-4b3c-9e5f-7a8b9c1d2e3f",
+    "fields": {
+      "name": "Lays",
+      "price": "999.99",
+      "count": 15
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": "fb3463a0-7d6e-54a3-bcd8-1b93388c648d",
+    "fields": {
+      "name": "Pepsi",
+      "price": "349.99",
+      "count": 25
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": "efe7eedd-89c5-56f5-984c-0712ee41a2eb",
+    "fields": {
+      "name": "Twix",
+      "price": "599.99",
+      "count": 12
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": "c40b683b-ac7b-5d6b-b0eb-549cb20169b9",
+    "fields": {
+      "name": "Nitro",
+      "price": "40",
+      "count": 1
+    }
+  },
+   {
+    "model": "products.product",
+    "pk": "440c0655-0bf6-51b6-a1fa-527f475a6fbc",
+    "fields": {
+      "name": "Mars",
+      "price": "10",
+      "count": 1000
+    }
+  }
+]
