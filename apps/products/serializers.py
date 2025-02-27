@@ -21,12 +21,12 @@ class PurchaseSerializer(serializers.Serializer):
         except Product.DoesNotExist:
             raise serializers.ValidationError({"product_id": "Указанный продукт не существуют."})
         if product.count < data['quantity']:
-            raise serializers.ValidationError({"quantity": "Недостаточно товара на складе."})
+            raise serializers.ValidationError({f'quantity": "Недостаточно товара на складе. Имеется {product.count}'})
 
         total_price: float = product.price * data['quantity']
         if data['money'] < total_price:
             raise serializers.ValidationError({
-                "money": "Недостаточно средств. Общая стоимость составляет {}".format(total_price)
+                "money": f'Недостаточно средств. Общая стоимость составляет {total_price}'
             })
 
         data['products'] = product

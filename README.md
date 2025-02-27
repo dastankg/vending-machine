@@ -19,7 +19,7 @@ SECRET_KEY=         # Django Secret key
 DEBUG=              # True для режима разработки, False для production
 
 # Настройки базы данных PostgreSQL
-DB_ENGINE=
+DB_ENGINE=          # Database engine (или storage engine )
 DB_NAME=            # Имя базы данных
 DB_USER=            # Имя пользователя PostgreSQL
 DB_PASSWORD=        # Пароль пользователя PostgreSQL
@@ -124,7 +124,7 @@ POST /api/products/purchase/
 ```json
 {
   "product_id": [
-    "The specified products does not exist."
+    "Указанный продукт не существуют."
   ]
 }
 ```
@@ -134,7 +134,7 @@ POST /api/products/purchase/
 ```json
 {
   "money": [
-    "Insufficient funds. Total price is 150.00"
+    "Недостаточно средств. Общая стоимость составляет 1999.98"
   ]
 }
 ```
@@ -144,7 +144,7 @@ POST /api/products/purchase/
 ```json
 {
   "quantity": [
-    "Not enough items in stock."
+    "Недостаточно товара на складе."
   ]
 }
 ```
