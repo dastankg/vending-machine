@@ -19,14 +19,14 @@ class PurchaseSerializer(serializers.Serializer):
         try:
             product = Product.objects.get(id=data['product_id'])
         except Product.DoesNotExist:
-            raise serializers.ValidationError({"product_id": "The specified products does not exist."})
+            raise serializers.ValidationError({"product_id": "Указанный продукт не существуют."})
         if product.count < data['quantity']:
-            raise serializers.ValidationError({"quantity": "Not enough items in stock."})
+            raise serializers.ValidationError({"quantity": "Недостаточно товара на складе."})
 
         total_price: float = product.price * data['quantity']
         if data['money'] < total_price:
             raise serializers.ValidationError({
-                "money": "Insufficient funds. Total price is {}".format(total_price)
+                "money": "Недостаточно средств. Общая стоимость составляет {}".format(total_price)
             })
 
         data['products'] = product

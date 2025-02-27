@@ -21,7 +21,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     # 3-rd party libraries
-    "drf_yasg",
+    'drf_spectacular',
+    'drf_spectacular_sidecar',
     "rest_framework",
 
     # apps
@@ -99,3 +100,18 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 FIXTURE_DIRS = [
     os.path.join(BASE_DIR, 'fixtures'),
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'API',
+    'DESCRIPTION': 'RetMind Test assignment',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+
+    'SWAGGER_UI_DIST': 'SIDECAR',
+    'SWAGGER_UI_FAVICON_HREF': 'SIDECAR',
+    'REDOC_DIST': 'SIDECAR',
+}
