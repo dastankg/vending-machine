@@ -1,5 +1,6 @@
-SECRET_KEY=
-DEBUG=
+SECRET_KEY=<your-django-secret>
+DEBUG=False
+DB_ENGINE=
 DB_NAME=
 DB_USER=
 DB_PASSWORD=
