@@ -8,6 +8,7 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
+RUN apt update && apt install -y netcat-openbsd
 COPY requirements.txt pyproject.toml uv.lock /app/
 
 RUN uv pip install --system -r requirements.txt
