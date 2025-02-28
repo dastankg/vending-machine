@@ -12,7 +12,7 @@ RUN apt update && apt install -y netcat-openbsd
 COPY requirements.txt pyproject.toml uv.lock /app/
 
 RUN uv pip install --system -r requirements.txt
-RUN apt update && apt install -y netcat-openbsd
+
 
 COPY entrypoint.sh /app/
 COPY . /app/
